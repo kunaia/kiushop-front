@@ -15,6 +15,7 @@ const Product = ({
   name,
   price,
   self,
+  amount
 }) => {
   const [vis, set_vis] = useState(isvisible);
   const { addToBasket, getBasket } = useContext(UserContext);
@@ -72,7 +73,16 @@ const Product = ({
                 />
               </div>
             ) : (
-              <img id="product" src={img} alt="product" />
+              amount==0?
+
+              (<div className="outtastock">
+                
+                <div className="outOfStock">out of stock</div>
+                <img id="product" src={img} alt="product" />
+              </div>
+                )
+                : <img id="product" src={img} alt="product" />
+
             )}
             <div className="bg">
               <div className="view">

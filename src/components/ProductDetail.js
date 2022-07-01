@@ -225,7 +225,7 @@ const ProductDetail = () => {
             <label htmlFor="quantity">
               {lang === "ka" ? "რაოდენობა" : "Quantity"}
             </label>
-            <input
+            <input className="quantity_currency"
               type="number"
               id="quantity"
               min="1"
@@ -237,12 +237,13 @@ const ProductDetail = () => {
             <label htmlFor="currency">
               {lang === "ka" ? "ვალუტა" : "Curency"}
             </label>
-            <select name="" id="currency">
+            <select   className="quantity_currency">
               <option value="USD">USD</option>
               <option value="EUR">EUR</option>
               <option value="GEL">GEL</option>
             </select>
           </div>
+          <p className="descriptionPart">{lang === "ka"?product.description_ge:product.description_en}</p>
           <button
             style={{ width: "360px" }}
             onClick={() => addToBasket2(id, product, quantity)}
@@ -259,7 +260,7 @@ const ProductDetail = () => {
           </div>
           <div className="button">
             <div className="front">
-              {lang === "ka" ? "ყიდვა ახლა" : "BUY IT NOW"}
+              {lang === "ka" ? "ახლა ყიდვა" : "BUY IT NOW"}
             </div>
             <div className="back"></div>
           </div>

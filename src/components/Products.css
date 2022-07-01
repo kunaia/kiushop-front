@@ -46,7 +46,14 @@
     text-align: center;
     cursor: pointer;
 }
+.outOfStock{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.418);
+    height: 100%;
+    width: 100%;
+    text-align: center;
 
+}
 .prod__type:hover {
     border-bottom: 1px solid black;
 }

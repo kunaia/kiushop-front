@@ -184,11 +184,12 @@ const AddProduct = ({ toggleShowAdd, method, info }) => {
           />
 
           <label>size</label>
-          <input
-            type="text"
-            placeholder="size"
-            onChange={(e) => set_size(e.target.value)}
-          />
+          <select onChange={(e) => {set_size(e.target.value);alert(e.target.value)}}>
+                                        <option value="default" onChange={(e) => set_size(e.target.value)}>default</option>
+                                        <option value="small" onChange={(e) => set_size(e.target.value)}>small</option>
+                                        <option value="medium" onChange={(e) => set_size(e.target.value)}>medium</option>
+                                        <option value="large" onChange={(e) => set_size(e.target.value)}>large</option>
+                    </select>
 
           <label>Descritpion in English</label>
           <input

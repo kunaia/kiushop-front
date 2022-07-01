@@ -95,7 +95,7 @@ const App = () => {
 
   const addToBasket = async (prod_id, product) => {
     const link = server + "basket/add";
-    console.log(basket.products);
+    // console.log(basket.products);
     set_basket({
       title: basket.title,
       total_cost: basket.total_cost,

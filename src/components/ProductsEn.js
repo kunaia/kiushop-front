@@ -121,6 +121,7 @@ const ProductsEn = () => {
                   self={prod}
                   isvisible={prod.is_visible}
                   id={prod.id}
+                  amount={prod.amount}
                   sale={prod.discount}
                   name={lang === "ka" ? prod.title_ge : prod.title_en}
                   price={prod.price}
