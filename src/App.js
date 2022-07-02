@@ -90,7 +90,7 @@ const App = () => {
     const data = await res.json();
     console.log(data);
     set_basket(data.basket);
-    //setCartSize(data.basket?.products.length);
+    setCartSize(data.basket?.products.length);
   };
 
   const addToBasket = async (prod_id, product) => {
@@ -278,10 +278,10 @@ const App = () => {
         }}
       >
         <div className="app">
-        <MessengerCustomerChat
-          pageId="116684631043186"
-          appId="940663426750156"
-        />
+          <MessengerCustomerChat
+            pageId="116684631043186"
+            appId="940663426750156"
+          />
           <Routes>
             <Route path="/" element={<HomeEn userData={userData} />} />
 
