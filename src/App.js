@@ -14,7 +14,7 @@ import Verify from "./components/Verify.js";
 import SearchPage from "./components/SearchPage.js";
 import server from "./components/ServerURL.js";
 import vector from "./images/vector.png";
-import MessengerCustomerChat from "react-messenger-customer-chat/lib/MessengerCustomerChat";
+import MessengerCustomerChat from "react-messenger-customer-chat";
 import Favourites from "./components/Favourites.js";
 import Cart from "./components/Cart.js";
 import { UserContext } from "./UserContext.js";
@@ -278,6 +278,10 @@ const App = () => {
         }}
       >
         <div className="app">
+        <MessengerCustomerChat
+          pageId="116684631043186"
+          appId="940663426750156"
+        />
           <Routes>
             <Route path="/" element={<HomeEn userData={userData} />} />
 
