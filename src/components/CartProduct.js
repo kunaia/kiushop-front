@@ -14,13 +14,20 @@ const CartProduct = ({
   addToBasket,
 }) => {
   const [am, setAm] = useState(amount);
-  const [total, setTotal] = useState(price * am);
+  const [total, setTotal] = useState(product.total_cost * am);
   const { deleteFromBasket, addToBasket2 } = useContext(UserContext);
 
   return (
     <div className="CartProduct">
       <div className="cart_profile">
-        <img src={img} className="profileImg" alt="" />
+        <div style={{ position: "relative" }}>
+          <img src={img} className="profileImg" alt="" />
+          {product.discount !== 0 && (
+            <div className="sale-pointer" style={{ top: "-15px" }}>
+              -{product.discount}%
+            </div>
+          )}
+        </div>
         <div className="profileInfo">
           <h2>{name}</h2>
           <p>${price}</p>
@@ -36,10 +43,10 @@ const CartProduct = ({
         defaultValue={amount}
         onChange={(e) => {
           addToBasket(id, product, e.target.value);
-          setTotal(price * e.target.value);
+          setTotal(total * e.target.value);
         }}
       />
-      <p className="total">${total && total.toFixed(2)}</p>
+      <p className="total">${product.total_cost}</p>
     </div>
   );
 };

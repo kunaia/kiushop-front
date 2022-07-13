@@ -26,6 +26,7 @@ const App = () => {
   const [logged_in, set_logged_in] = useState(false);
   const [LoginLoading, setLoginLoading] = useState(false);
   const [basket, set_basket] = useState({ products: [] });
+  const [basketProds, setBasketProds] = useState([]);
   const [cartSize, setCartSize] = useState(0);
   const [favs, setFavs] = useState([]);
   const [orders, setOrders] = useState([]);
@@ -121,6 +122,7 @@ const App = () => {
     const data = await res.json();
     console.log(data);
     set_basket(data.basket);
+    setBasketProds(data.basket.products);
     setCartSize(data.basket?.products.length);
   };
 
@@ -143,6 +145,7 @@ const App = () => {
       }),
     });
     const data = await res.json();
+
     setCartSize(data.basket_product_cnt);
     console.log(data.basket_product_cnt);
     console.log(data);
@@ -313,6 +316,8 @@ const App = () => {
           setFavs,
           favs,
           orders,
+          basketProds,
+          setBasketProds,
         }}
       >
         <div className="app">

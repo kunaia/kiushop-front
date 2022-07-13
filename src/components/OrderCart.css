@@ -19,4 +19,49 @@
 .order-cart-prod  p {
     font-size: 20px;
     margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.order-info-other {
+    margin-top: 50px;
+    width: 600px;
+}
+
+.order-prod-info {
+    height: 450px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.order-info {
+    width: 400px;
+    border: 1px solid black;
+    position: fixed;
+    padding: 20px;
+    right: 100px;
+    top: 180px;
+}
+
+.order-info-item {
+    margin-bottom: 30px;
+}
+.order-info-item > textarea {
+    resize: none;
+    width: 300px;
+    height: 150px;
+    padding: 8px;
+    font-weight: 800;
+}
+
+.order-info-item > h3 {
+    font-weight: 400;
+}
+
+@media only screen and (max-width: 800px ) {
+    .order-info {
+        display: none;
+    }
+    .order-cart-prod {
+        flex-direction: column;
+    }
 }

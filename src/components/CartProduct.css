@@ -15,13 +15,16 @@
 }
 .cart_profile{
     display: flex;
+    position: relative;
 }
 .amount{
     width: 100px;
     height: 50px;
     font-size: 25px;
     padding-left: 20px;
-    margin-right: 200px;
+    position: absolute;
+    left: 41%;
+    transform: translateX(-50%);
 }
 .profileInfo{
     display: flex;
@@ -53,4 +56,12 @@
 
 @media only screen and (max-width: 1200px) {
     
+    .amount {
+        display: none;
+        position:static;
+    }
+
+    .cart-left > ul {
+        display: none;
+    }
 }

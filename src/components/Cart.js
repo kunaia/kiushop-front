@@ -8,7 +8,8 @@ import CartProduct from "./CartProduct.js";
 import { Link, useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { lang, basket, getBasket } = useContext(UserContext);
+  const { lang, basket, getBasket, setBasketProds, basketProds } =
+    useContext(UserContext);
   const [subtotal, setSubtotal] = useState(basket.total_cost);
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
@@ -30,6 +31,7 @@ const Cart = () => {
     });
     const data = await res.json();
     setSubtotal(data.basket.total_cost);
+    setBasketProds(data.basket.products);
     console.log("PUT quant");
     console.log(data);
   };
@@ -134,8 +136,8 @@ const Cart = () => {
             <li>Total</li>
           </ul>
           <div className="line"></div>
-          {basket.products &&
-            basket.products.map((x) => (
+          {basketProds &&
+            basketProds.map((x) => (
               <CartProduct
                 key={x.id}
                 img={x.images?.filter((e) => e.main)[0]?.img_url}
