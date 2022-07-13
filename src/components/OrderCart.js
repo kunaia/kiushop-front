@@ -3,13 +3,26 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import Header from "./Header";
 import "./OrderCart.css";
+import server from "./ServerURL";
 
 const OrderCart = () => {
   const { order_id } = useParams();
-  const { orders } = useContext(UserContext);
-  const [order, setOrder] = useState(
-    orders.filter((ord) => ord.id == order_id)[0]
-  );
+  const [order, setOrder] = useState([]);
+
+  const getOrder = async () => {
+    const link = server + "order/" + order_id;
+    const response = await fetch(link, {
+      method: "GET",
+      headers: {
+        Content_Type: "application/json",
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
+      },
+    });
+    const data = await response.json();
+    console.log("single order");
+    console.log(data);
+    setOrder(data.order);
+  };
 
   const date = (order) => {
     const d = new Date(order?.date);
@@ -17,9 +30,8 @@ const OrderCart = () => {
   };
 
   useEffect(() => {
-    console.log(orders);
-    console.log(orders.filter((ord) => ord.id == order_id));
-    setOrder(orders.filter((ord) => ord.id == order_id)[0]);
+    //setOrder(orders.filter((ord) => ord.id == order_id)[0]);
+    getOrder();
     console.log(order);
   }, []);
 
@@ -59,12 +71,12 @@ const OrderCart = () => {
           <div className="order-info-item">
             <h2>Address:</h2>
             <h3>
-              {order?.address.city}, {order?.address.address}
+              {order?.address?.city}, {order?.address?.address}
             </h3>
           </div>
           <div className="order-info-item">
             <h2>Status:</h2>
-            <h3>{order?.status.description_en}</h3>
+            <h3>{order?.status?.description_en}</h3>
           </div>
           <div className="order-info-item">
             <h2>User comment:</h2>
@@ -72,7 +84,7 @@ const OrderCart = () => {
           </div>
           <div className="order-info-item">
             <h2>Subtotal:</h2>
-            <h3>${order?.basket.total_cost}</h3>
+            <h3>${order?.basket?.total_cost}</h3>
           </div>
         </div>
       </div>

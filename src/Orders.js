@@ -38,7 +38,7 @@ export default function Orders() {
       <Header />
       <div className="orders">
         <div className="order-list">
-          {orders.map((order) => (
+          {orders?.map((order) => (
             <div className="order">
               <div className="order-item">
                 <div className="order-item-name">Order id</div>

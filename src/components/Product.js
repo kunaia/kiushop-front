@@ -64,14 +64,16 @@ const Product = ({
   };
 
   const onHeart = (e) => {
-    if (e.target.style.color !== "red") {
-      e.target.style.color = "red";
-      addToFavs();
-      setFavs([...favs, self]);
-    } else {
-      e.target.style.color = "black";
-      addToFavs();
-      setFavs(favs.filter((p) => p.id !== self.id));
+    if (logged_in) {
+      if (e.target.style.color !== "red") {
+        e.target.style.color = "red";
+        addToFavs();
+        setFavs([...favs, self]);
+      } else {
+        e.target.style.color = "black";
+        addToFavs();
+        setFavs(favs.filter((p) => p.id !== self.id));
+      }
     }
   };
 

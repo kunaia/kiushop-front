@@ -197,6 +197,9 @@ const ProductDetail = () => {
                 style={{ objectFit: "cover", objectPosition: "center" }}
                 alt="product image"
               />
+              {product.discount !== 0 && (
+                <div className="discount_place">-{product.discount}%</div>
+              )}
               {userData.permission === "admin" && logged_in && (
                 <input
                   className="main_upload"
@@ -210,7 +213,6 @@ const ProductDetail = () => {
           )}
         </div>
         <div className="line_right">
-          <div className="discount_place">-{product.discount}%</div>
           <h1
             style={{
               fontSize: lang === "ka" ? "42px" : "56px",
@@ -220,8 +222,8 @@ const ProductDetail = () => {
           >
             {lang === "ka" ? product.title_ge : product.title_en}
           </h1>
-          <p>${product.price}</p>
-          <div className="amount">
+          <p id="prod_detail_price">${product.price}</p>
+          <div className="amount" style={{ marginLeft: "-20px" }}>
             <label htmlFor="quantity">
               {lang === "ka" ? "რაოდენობა" : "Quantity"}
             </label>
@@ -233,7 +235,7 @@ const ProductDetail = () => {
               onChange={(e) => setQuantity(e.target.value)}
             />
           </div>
-          <div className="amount">
+          <div className="amount" style={{ marginLeft: "-20px" }}>
             <label htmlFor="currency">
               {lang === "ka" ? "ვალუტა" : "Curency"}
             </label>
@@ -243,6 +245,11 @@ const ProductDetail = () => {
               <option value="GEL">GEL</option>
             </select>
           </div>
+          <p id="prod-detail-desc">
+            {localStorage.getItem("lang") === "en"
+              ? product.description_en
+              : product.description_ge}
+          </p>
           <button
             style={{ width: "360px" }}
             onClick={() => addToBasket2(id, product, quantity)}

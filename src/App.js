@@ -261,6 +261,7 @@ const App = () => {
 
   const logout = async () => {
     const link = server + "logout";
+
     const response = await fetch(link, {
       method: "POST",
       headers: {
@@ -268,11 +269,7 @@ const App = () => {
         Authorization: "Bearer " + localStorage.getItem("access_token"),
       },
     });
-    console.log(
-      localStorage.getItem("refresh_token") +
-        " : " +
-        localStorage.getItem("access_token")
-    );
+    window.location.reload();
     const data = await response.json();
     set_logged_in(false);
     setFavs([]);
@@ -321,10 +318,10 @@ const App = () => {
         }}
       >
         <div className="app">
-          <MessengerCustomerChat
+          {/* <MessengerCustomerChat
             pageId="116684631043186"
             appId="940663426750156"
-          />
+          /> */}
           <Routes>
             <Route path="/" element={<HomeEn userData={userData} />} />
 

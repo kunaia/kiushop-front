@@ -19,8 +19,6 @@ width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-
 }
 
 #main_image_w_upload {
@@ -77,16 +75,31 @@ width: 100vw;
 }
 .discount_place{
     background-color: #FF4105;
+    position: absolute;
+    top: -10px;
+    right: -10px;
     color: white;
-    padding: 5px;
+    padding: 10px 5px;
     font-size: 19px;
 }
+
+.amount > label {
+    margin-right: 10px;
+}
+
+#prod-detail-desc {
+    font-size: 16px !important;
+    width: 500px;
+    line-height: 30px;
+}
+
 .line_right{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     height: 100%;
+    margin-left: 20px;
 }
 .line_right h1{
     font-family: 'Italiana', serif;

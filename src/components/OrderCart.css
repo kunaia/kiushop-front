@@ -34,7 +34,7 @@
 
 .order-info-other {
     margin-top: 50px;
-    width: 600px;
+    max-width: 600px;
 }
 
 .order-prod-info {
