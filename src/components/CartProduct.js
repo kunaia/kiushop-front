@@ -38,7 +38,7 @@ const CartProduct = ({
       </div>
       <input
         type="number"
-        className="amount"
+        className="order-amount"
         min="1"
         defaultValue={amount}
         onChange={(e) => {

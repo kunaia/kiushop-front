@@ -17,7 +17,15 @@
     display: flex;
     position: relative;
 }
-.amount{
+
+.amount {
+    width: 100px;
+    height: 50px;
+    font-size: 25px;
+    padding-left: 20px;
+}
+
+.order-amount{
     width: 100px;
     height: 50px;
     font-size: 25px;
@@ -55,11 +63,6 @@
 }
 
 @media only screen and (max-width: 1200px) {
-    
-    .amount {
-        display: none;
-        position:static;
-    }
 
     .cart-left > ul {
         display: none;
