@@ -101,7 +101,12 @@ const Product = ({
                 />
               </div>
             ) : (
-              <img id="product" src={img} alt="product" />
+              <div className="outtastock">
+                {self.amount === 0 && (
+                  <div className="outOfStock">out of stock</div>
+                )}
+                <img id="product" src={img} alt="product" />
+              </div>
             )}
             <div className="bg">
               <div className="view">
