@@ -3,5 +3,40 @@
 }
 
 .order {
-    margin: 15px;
+    margin: 30px 20px;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    margin-bottom: 2px;
+}
+
+.order-item-name {
+    background-color: black;
+    color: white;
+    padding: 6px 0;
+    font-weight: 300;
+    width: 200px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-item-value {
+    text-align: center;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.order-det {
+    cursor: pointer;
+    padding: 7px 0;
+    margin-top: -2px;
+    border-top: none;
 }

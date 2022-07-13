@@ -26,7 +26,7 @@ const Header = () => {
     set_logged_in,
     changeLang,
     lang,
-    basket,
+    favs,
     cartSize,
   } = useContext(UserContext);
   const name = userData.name;
@@ -96,7 +96,6 @@ const Header = () => {
     getData();
   }, []);
 
-  console.log(data);
   const selectColor = function (collr) {
     setColorParam(collr);
     var colorList = document.querySelectorAll(".colr");
@@ -422,7 +421,11 @@ const Header = () => {
               </div>
             </Link>
           )}
-          <Link className="text-link" to={"/favourites/1"}>
+          <Link
+            className="text-link"
+            to={logged_in ? "/favourites/1" : "/login"}
+            id={favs?.length > 0 ? "heart" : ""}
+          >
             <BsHeart size={30} />
           </Link>
           <a href="/cart/1" className="text-link cart-icon">

@@ -434,6 +434,21 @@ nav {
     background-color: black;
 }
 
+#heart {
+    position: relative;
+}
+
+#heart::after {
+    content: '';
+    width: 10px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+}
+
 @keyframes dropAnimation {
     from {
         right: -150px;

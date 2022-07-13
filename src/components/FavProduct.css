@@ -7,6 +7,9 @@
 
 .fav__image {
     width: 300px;
+    height: 450px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .fav__info {

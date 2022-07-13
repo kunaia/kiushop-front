@@ -20,12 +20,15 @@ import Cart from "./components/Cart.js";
 import { UserContext } from "./UserContext.js";
 import SuccessOrder from "./components/SuccessOrder.js";
 import Orders from "./Orders.js";
+import OrderCart from "./components/OrderCart.js";
 
 const App = () => {
   const [logged_in, set_logged_in] = useState(false);
   const [LoginLoading, setLoginLoading] = useState(false);
   const [basket, set_basket] = useState({ products: [] });
   const [cartSize, setCartSize] = useState(0);
+  const [favs, setFavs] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [userData, setUserData] = useState({
     email: "",
     name: "",
@@ -37,6 +40,34 @@ const App = () => {
       ? localStorage.getItem("lang")
       : "en"
   );
+
+  const getOrders = async () => {
+    const link = server + "orders";
+    const res = await fetch(link, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
+      },
+    });
+    const data = await res.json();
+    setOrders(data.orders);
+    console.log(data);
+  };
+
+  const fetchFavs = async () => {
+    const link = server + "favorites";
+    const res = await fetch(link, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    setFavs(data.favorites);
+  };
 
   const changeLang = (newLang) => {
     set_lang(newLang);
@@ -241,7 +272,8 @@ const App = () => {
     );
     const data = await response.json();
     set_logged_in(false);
-    //setUserData(null);
+    setFavs([]);
+    setUserData({});
     logout2();
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
@@ -251,11 +283,14 @@ const App = () => {
   useEffect(() => {
     localStorage.getItem("access_token") && checkUser();
     localStorage.getItem("basket_title") && getBasket();
+    localStorage.getItem("access_token") && fetchFavs();
+    localStorage.getItem("access_token") && getOrders();
     if (!localStorage.getItem("basket_title")) {
       createBasket();
       console.log("craeted");
     }
-  }, []);
+    console.log(orders);
+  }, [logged_in]);
 
   return (
     <Router>
@@ -275,6 +310,9 @@ const App = () => {
           addToBasket2,
           cartSize,
           setCartSize,
+          setFavs,
+          favs,
+          orders,
         }}
       >
         <div className="app">
@@ -305,6 +343,7 @@ const App = () => {
             />
             <Route path="/order_success" element={<SuccessOrder />} />
             <Route path="/orders" exact element={<Orders />} />
+            <Route path="/order/:order_id" element={<OrderCart />} />
           </Routes>
         </div>
       </UserContext.Provider>

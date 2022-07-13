@@ -46,3 +46,14 @@ ul {
 .order_success > * {
   margin: 12px;
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+  display: none;
+}
+
+#address-fields-err {
+  font-size: 16px;
+  margin-top: -15px;
+}

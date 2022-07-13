@@ -17,7 +17,8 @@ const Product = ({
   self,
 }) => {
   const [vis, set_vis] = useState(isvisible);
-  const { addToBasket, getBasket } = useContext(UserContext);
+  const { addToBasket, getBasket, setFavs, favs, logged_in } =
+    useContext(UserContext);
 
   const turn_visible_on = () => {
     toggle_visibility();
@@ -44,6 +45,34 @@ const Product = ({
     });
     const data = await res.json();
     console.log(data);
+  };
+
+  const addToFavs = async () => {
+    const link = server + "favorites";
+    const res = await fetch(link, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
+      },
+      body: JSON.stringify({
+        product_id: id,
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+  };
+
+  const onHeart = (e) => {
+    if (e.target.style.color !== "red") {
+      e.target.style.color = "red";
+      addToFavs();
+      setFavs([...favs, self]);
+    } else {
+      e.target.style.color = "black";
+      addToFavs();
+      setFavs(favs.filter((p) => p.id !== self.id));
+    }
   };
 
   const createBasket = async () => {
@@ -110,7 +139,16 @@ const Product = ({
           >
             {lang == "en" ? "ADD TO CART" : "კალათაში დამატება"}
           </div>
-          <BsHeart style={{ cursor: "pointer" }} size={30} />
+          <Link to={!logged_in && "/login"} className="text-link">
+            <BsHeart
+              style={{
+                cursor: "pointer",
+                color: self.is_favorite ? "red" : "",
+              }}
+              size={30}
+              onClick={(e) => onHeart(e)}
+            />
+          </Link>
         </div>
       </div>
     </div>

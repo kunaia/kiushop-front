@@ -1,2 +1,2 @@
-const server = "https://ec21-185-70-52-21.ngrok.io/";
+const server = "http://34.141.127.178:5002/";
 export default server;

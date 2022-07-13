@@ -45,7 +45,7 @@ const Cart = () => {
         },
       });
       const data = await res.json();
-      setAddresses(data.addresses);
+      setAddresses(data.addresses.map((a) => ({ ...a, selected: false })));
       setSelectedAddress(data.addresses[0].id);
       console.log(data);
     } catch (err) {
@@ -55,24 +55,49 @@ const Cart = () => {
 
   const createAddress = async () => {
     const link = server + "address";
+    const field_err_msg = document.getElementById("address-fields-err");
+    if (city.length !== 0 && address.length !== 0) {
+      const res = await fetch(link, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+        body: JSON.stringify({
+          city: city,
+          address: address,
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+      field_err_msg.style.display = "none";
+    } else {
+      field_err_msg.style.display = "block";
+    }
+  };
+
+  const removeAddress = async (id) => {
+    console.log("id: " + id);
+    const link = server + "address";
     const res = await fetch(link, {
-      method: "POST",
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("access_token"),
       },
       body: JSON.stringify({
-        city: city,
-        address: address,
+        address_id: id,
       }),
     });
     const data = await res.json();
-    console.log("Craete address: ");
+    setAddresses(addresses.filter((a) => a.id !== id));
     console.log(data);
   };
 
   const createOrder = async () => {
     const link = server + "order";
+    const field_err_msg = document.getElementById("address-field-err");
+
     const res = await fetch(link, {
       method: "POST",
       headers: {
@@ -88,8 +113,8 @@ const Cart = () => {
     const data = await res.json();
     if (res.ok) {
       navigate("/order_success");
+      localStorage.removeItem("basket_title");
     }
-    console.log(data);
   };
 
   useEffect(() => {
@@ -143,6 +168,9 @@ const Cart = () => {
             value={address}
             style={{ margin: "10px 0" }}
           />
+          <p className="error" id="address-fields-err">
+            *fill out fields
+          </p>
           <button
             id="address-save"
             onClick={() => {
@@ -154,18 +182,25 @@ const Cart = () => {
           </button>
 
           <label htmlFor="country">YOUR ADDRESSES</label>
-          <select
-            onChange={(e) => {
-              e.preventDefault();
-              setSelectedAddress(e.currentTarget.value);
-            }}
-          >
+          <div className="addresses">
             {addresses.map((a) => (
-              <option value={a.id} key={a.id} className="opt-address">
-                  {a.city}, {a.address}
-              </option>
+              <div
+                className={
+                  a.id === selectedAddress
+                    ? "address address-selected"
+                    : "address"
+                }
+                onClick={() => {
+                  setSelectedAddress(a.id);
+                }}
+              >
+                {a.city}, {a.address}
+                <span id="addr-rm" onClick={() => removeAddress(a.id)}>
+                  &#10006;
+                </span>
+              </div>
             ))}
-          </select>
+          </div>
 
           <label htmlFor="zipcode">TYPE YOUR COMMENT</label>
           <textarea

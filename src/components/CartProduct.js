@@ -4,7 +4,6 @@ import { UserContext } from "../UserContext";
 import { MdRemoveCircle } from "react-icons/md";
 import server from "./ServerURL";
 
-
 const CartProduct = ({
   img,
   name,
@@ -28,7 +27,6 @@ const CartProduct = ({
           <div className="remove" onClick={() => deleteFromBasket(id)}>
             <p id="rm_cart">REMOVE</p>
           </div>
-
         </div>
       </div>
       <input

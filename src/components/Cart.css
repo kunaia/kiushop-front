@@ -69,7 +69,7 @@ justify-content: space-between;
 }
 
 #address-save {
-    padding: 5px;
+    padding: 10px;
     border: none;
     color: white;
     background-color: black;
@@ -144,5 +144,25 @@ text-align: left;
     display: flex;
     justify-content: space-between;
 }
+
+.address {
+    margin: 0;
+    border: none;
+    position: relative;
+}
+
+.address:hover {
+    background-color: gainsboro;
+}
+
+.address-selected {
+    background-color: gainsboro;
+}
+
+#addr-rm {
+  position: absolute;
+  right: 5px;
+}
+
 
 
