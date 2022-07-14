@@ -78,10 +78,12 @@ const OrderCart = () => {
             <h2>Status:</h2>
             <h3>{order?.status?.description_en}</h3>
           </div>
-          <div className="order-info-item">
-            <h2>User comment:</h2>
-            <textarea value={order?.user_comment} disabled />
-          </div>
+          {order?.user_comment?.length !== 0 && (
+            <div className="order-info-item">
+              <h2>User comment:</h2>
+              <textarea value={order?.user_comment} disabled />
+            </div>
+          )}
           <div className="order-info-item">
             <h2>Subtotal:</h2>
             <h3>${order?.basket?.total_cost}</h3>
