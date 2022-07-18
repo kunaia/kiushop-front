@@ -90,9 +90,7 @@ const ProductsEn = () => {
         </div>
       </div>
       <div className="products__inner">
-        <div
-          className={type === "all" ? "products__list__all" : "products__list"}
-        >
+        <div className={"products__list__all"}>
           {loaded && userData.permission === "admin" && logged_in && (
             <div
               onClick={() => {
