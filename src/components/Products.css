@@ -93,8 +93,8 @@
     display: inline-block;
     cursor: pointer;
     position: relative;
-    width: 320px;
-    height: 455px;
+    max-width: 300px;
+    aspect-ratio: 3/4;
     padding: 50px 100px;
     margin-top: 50px;
     display: flex;
@@ -109,7 +109,6 @@
 @media only screen and (max-width: 1350px) {
     .addProduct {
         width: 200px;
-        height: 300px;
     }
 
     .products__list__all {
