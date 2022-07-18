@@ -7,7 +7,7 @@
 .products__inner {
     margin: auto;
     margin-top: 100px;
-    overflow-x: auto;
+    overflow-x: visible;
 }
 
 .products__inner::-webkit-scrollbar { 
@@ -63,6 +63,8 @@
 .products__list__all {
     display: grid;
     grid-template-columns: auto auto auto;
+    row-gap: 100px;
+    column-gap: 150px;
 }
 
 .prod__dots {
@@ -79,13 +81,22 @@
     z-index: 5;
 }
 
+.addIcon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .addProduct {
     background-color: rgb(205, 205, 205);
     display: inline-block;
     cursor: pointer;
-    height: 450px;
+    position: relative;
+    width: 320px;
+    height: 455px;
     padding: 50px 100px;
-    margin: 50px 50px 0px 100px;
+    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,13 +106,13 @@
     background-color: rgb(155, 153, 153);
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1350px) {
     .addProduct {
         width: 200px;
         height: 300px;
     }
 
-    .addIcon {
-        display: block;
+    .products__list__all {
+        gap: 60px;
     }
 }

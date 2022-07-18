@@ -1,2 +1,2 @@
-const server = "http://34.141.127.178:5002/";
+const server = "https://kunaia.one/";
 export default server;
