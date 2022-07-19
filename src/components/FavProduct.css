@@ -49,3 +49,13 @@
     display: flex;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 800px ) {
+    .favproduct {
+        flex-direction: column;;
+    }
+
+    .fav__remove {
+        margin-top: 30px;
+    }
+}

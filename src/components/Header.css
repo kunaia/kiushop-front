@@ -124,7 +124,7 @@ nav {
     background-color: #ffffff;
     padding: 50px;
     right: 0;
-    top: 110px;
+    top: 100px;
     z-index: 6;
     animation: dropAnimation 0.3s ease-out;
 }
@@ -485,4 +485,14 @@ nav {
         display: none;
     }
 
+}
+
+@media only screen and (max-width: 800px) {
+    .logo {
+        width: 140px;
+    }
+
+    .lang {
+        display: none;
+    }
 }

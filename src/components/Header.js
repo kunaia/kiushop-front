@@ -456,10 +456,10 @@ const Header = () => {
           </div>
         ) : (
           <div className="header__right__resp">
-            <Link className="text-link" to={"login"}>
+            <Link className="text-link" to={"/login"}>
               <div className="profile">
                 <CgProfile size={35} />
-                <p id="login">{lang === "ka" ? "გამოსვლა" : "Logout"}</p>
+                <p id="login">{lang === "ka" ? "შესვლა" : "Login"}</p>
               </div>
             </Link>
             <Link className="text-link" to={"/favourites/1"}>

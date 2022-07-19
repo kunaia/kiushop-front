@@ -50,7 +50,8 @@
     top: 0;
     bottom: 0;
     z-index: 0;
-    height: 98.5%;
+    height: 100%;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     display: none;
     align-items: center;
@@ -99,12 +100,30 @@
 
     .prod__img {
         width: 200px;
-        height: 300px;
     }
 
 
     .add-cart {
         padding: 5px 20px;
         font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .product {
+        width: 280px;
+    }
+
+    .prod__img {
+        width: 280px;
+        aspect-ratio: 3/4;
+    }
+
+    .sale-pointer {
+        right: -30px;
+    }
+
+    #product {
+        width: 280px;
     }
 }

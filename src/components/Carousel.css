@@ -22,6 +22,7 @@
 .carousel__image {
     width: 100vw;
     object-fit: cover;
+    object-position: center;
     height: 500px;
 }
 .carousel__image:nth-child(1) {
@@ -114,3 +115,30 @@
     }
 
 }
+
+@media only screen and (max-width: 800px) {
+
+    .carousel__image {
+        height: 250px;
+    }
+
+    #carousel__logo {
+        top: 20px;
+        left: 60px;
+    }
+
+    .dots {
+        display: none;
+    }
+
+    .carousel__container {
+        margin-bottom: -100px;
+    }
+
+    .shopnow {
+        top: 100px;
+        width: 200px;
+    }
+
+}
+

@@ -27,7 +27,10 @@ const FavProduct = ({ prod }) => {
   return (
     <div className="favproduct">
       <div className="fav__image__container">
-        <img className="fav__image" src={prod.images[0].img_url} />
+        <img
+          className="fav__image"
+          src={prod.images.filter((im) => im.main)[0].img_url}
+        />
         <div className="bg">
           <Link to={"/product/" + prod.id} className="text-link">
             <div className="view">View Plant</div>
