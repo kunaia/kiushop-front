@@ -251,7 +251,7 @@ const ProductDetail = () => {
               : product.description_ge}
           </p>
           <button
-            style={{ width: "360px" }}
+            style={{ maxWidth: "360px" }}
             onClick={() => addToBasket2(id, product, quantity)}
           >
             {lang == "ka" ? "კალათაში დამატება" : "ADD TO CART"}
