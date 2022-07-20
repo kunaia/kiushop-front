@@ -222,7 +222,7 @@ const ProductDetail = () => {
           >
             {lang === "ka" ? product.title_ge : product.title_en}
           </h1>
-          <p id="prod_detail_price">${product.price}</p>
+          <p id="prod_detail_price">${product.price?.toFixed(2)}</p>
           <div className="amount" style={{ marginLeft: "-20px" }}>
             <label htmlFor="quantity">
               {lang === "ka" ? "რაოდენობა" : "Quantity"}
@@ -252,6 +252,7 @@ const ProductDetail = () => {
           </p>
           <button
             style={{ maxWidth: "360px" }}
+            id="add-to-cart"
             onClick={() => addToBasket2(id, product, quantity)}
           >
             {lang == "ka" ? "კალათაში დამატება" : "ADD TO CART"}

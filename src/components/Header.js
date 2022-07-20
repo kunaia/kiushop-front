@@ -446,10 +446,17 @@ const Header = () => {
                 <p id="login">{name}</p>
               </div>
             </Link>
-            <Link className="text-link" to={"/favourites/1"}>
+            <Link
+              className="text-link"
+              to={"/favourites/1"}
+              id={favs?.length > 0 ? "heart" : ""}
+            >
               <BsHeart size={30} />
             </Link>
-            <BsCart size={30} />
+            <a href="/cart/1" className="text-link cart-icon">
+              {cartSize !== 0 && <div className="cart-number">{cartSize}</div>}
+              <BsCart size={30} />
+            </a>
             <p id="resp_logout" onClick={onLogout}>
               {lang === "ka" ? "გამოსვლა" : "Logout"}
             </p>
@@ -462,10 +469,17 @@ const Header = () => {
                 <p id="login">{lang === "ka" ? "შესვლა" : "Login"}</p>
               </div>
             </Link>
-            <Link className="text-link" to={"/favourites/1"}>
+            <Link
+              className="text-link"
+              to={"/favourites/1"}
+              id={favs?.length > 0 ? "heart" : ""}
+            >
               <BsHeart size={30} />
             </Link>
-            <BsCart size={30} />
+            <a href="/cart/1" className="text-link cart-icon">
+              {cartSize !== 0 && <div className="cart-number">{cartSize}</div>}
+              <BsCart size={30} />
+            </a>
           </div>
         )}
       </div>

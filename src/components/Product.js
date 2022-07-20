@@ -135,7 +135,7 @@ const Product = ({
             )}
           </div>
         )}
-        <p>{"$" + price}</p>
+        <p>{"$" + price?.toFixed(2)}</p>
         <div className="prod__action">
           <div
             className="add-cart"

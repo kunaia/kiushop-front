@@ -30,7 +30,7 @@ const CartProduct = ({
         </div>
         <div className="profileInfo">
           <h2>{name}</h2>
-          <p>${price}</p>
+          <p>${price?.toFixed(2)}</p>
           <div className="remove" onClick={() => deleteFromBasket(id)}>
             <p id="rm_cart">REMOVE</p>
           </div>
@@ -46,7 +46,7 @@ const CartProduct = ({
           setTotal(total * e.target.value);
         }}
       />
-      <p className="total">${product.total_cost}</p>
+      <p className="total">${product.total_cost?.toFixed(2)}</p>
     </div>
   );
 };

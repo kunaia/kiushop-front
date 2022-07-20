@@ -39,30 +39,32 @@ const OrderCart = () => {
     <div>
       <Header />
       <div className="ordercart">
-        {order?.basket?.products.map((prod) => (
-          <div className="order-cart-prod">
-            <img alt="product" src={prod?.images[0]?.img_url} />
-            <div className="order-prod-info">
-              <p className="order-prod-name">{prod.title_en}</p>
-              <p>${prod.price}</p>
-              <p>Quantity: </p>
-              <input
-                type="number"
-                className="amount"
-                min="1"
-                defaultValue={prod.quantity}
-                disabled
-              />
-              <div className="order-info-other">
-                <p>
-                  {localStorage.getItem("lang") === "en"
-                    ? prod.description_en
-                    : prod.description_ge}
-                </p>
+        <div className="cart-prods">
+          {order?.basket?.products.map((prod) => (
+            <div className="order-cart-prod" key={prod.id}>
+              <img alt="product" src={prod?.images[0]?.img_url} />
+              <div className="order-prod-info">
+                <p className="order-prod-name">{prod.title_en}</p>
+                <p>${prod.price?.toFixed(2)}</p>
+                <p>Quantity: </p>
+                <input
+                  type="number"
+                  className="amount"
+                  min="1"
+                  defaultValue={prod.quantity}
+                  disabled
+                />
+                <div className="order-info-other">
+                  <p>
+                    {localStorage.getItem("lang") === "en"
+                      ? prod.description_en
+                      : prod.description_ge}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
         <div className="order-info">
           <div className="order-info-item">
             <h2>Date:</h2>
@@ -86,7 +88,7 @@ const OrderCart = () => {
           )}
           <div className="order-info-item">
             <h2>Subtotal:</h2>
-            <h3>${order?.basket?.total_cost}</h3>
+            <h3>${order?.basket?.total_cost?.toFixed(2)}</h3>
           </div>
         </div>
       </div>

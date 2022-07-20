@@ -82,6 +82,7 @@ const App = () => {
       total_cost: basket.total_cost,
       products: basket.products.filter((p) => p.id !== id),
     });
+    setBasketProds(basketProds.filter((p) => p.id !== id));
     const res = await fetch(link, {
       method: "DELETE",
       headers: {
@@ -340,7 +341,7 @@ const App = () => {
             <Route path={"/product/:id"} element={<ProductDetail />} />
 
             <Route
-              path={"/kiushop/verify/:email/:token"}
+              path={"/kiushop/verify/:user_id/:token"}
               element={<Verify />}
             />
             <Route path="/order_success" element={<SuccessOrder />} />

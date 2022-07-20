@@ -34,11 +34,11 @@
 
 .order-info-other {
     margin-top: 50px;
-    max-width: 600px;
 }
 
 .order-prod-info {
     height: 450px;
+    width: clamp(300px, 50vw, 600px);
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -46,10 +46,9 @@
 .order-info {
     width: 400px;
     border: 1px solid black;
-    position: fixed;
     padding: 20px;
-    right: 100px;
-    top: 180px;
+    height: 650px;
+    margin-right: 50px;
 }
 
 .order-info-item {
@@ -67,11 +66,29 @@
     font-weight: 400;
 }
 
+.ordercart {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 1400px ) {
+    .ordercart{
+        flex-direction: column;
+    }
+
+    .order-info {
+        margin-top: 50px;
+        margin-left: 50px;
+    }
+}
+
 @media only screen and (max-width: 800px ) {
     .order-info {
-        display: none;
+        margin-left: 0;
+        width: 300px;
     }
     .order-cart-prod {
         flex-direction: column;
+        margin-left: 0;
     }
 }

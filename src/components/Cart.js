@@ -213,7 +213,9 @@ const Cart = () => {
           />
 
           <h3>SUBTOTAL</h3>
-          <p>${subtotal ? subtotal : basket.total_cost}</p>
+          <p>
+            ${subtotal ? subtotal?.toFixed(2) : basket.total_cost?.toFixed(2)}
+          </p>
           <div className="button">
             <div className="front" onClick={createOrder}>
               {lang === "ka" ? "ყიდვა" : "PROCEED TO CHECKOUT"}
