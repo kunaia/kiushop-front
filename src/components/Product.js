@@ -5,7 +5,16 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import server from "./ServerURL";
 
-const Product = ({ isvisible, img, id, sale, name, price, self }) => {
+const Product = ({
+  isvisible,
+  img,
+  id,
+  sale,
+  name,
+  price,
+  isrelated,
+  self,
+}) => {
   const [vis, set_vis] = useState(isvisible);
   const { addToBasket, getBasket, setFavs, favs, logged_in, userData, lang } =
     useContext(UserContext);
@@ -109,7 +118,7 @@ const Product = ({ isvisible, img, id, sale, name, price, self }) => {
           </div>
         </a>
         <p>{name}</p>
-        {isadmin && (
+        {isadmin && !isrelated && (
           <div>
             {vis ? (
               <BsEye
@@ -141,7 +150,7 @@ const Product = ({ isvisible, img, id, sale, name, price, self }) => {
             <BsHeart
               style={{
                 cursor: "pointer",
-                color: self.is_favorite ? "red" : "",
+                color: self.is_favorite === true ? "red" : "",
               }}
               size={30}
               onClick={(e) => onHeart(e)}

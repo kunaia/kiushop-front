@@ -222,8 +222,10 @@
 }
 
 .relateds {
-    margin: auto;
+    width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 100px;
     overflow-x: auto;
 }
@@ -298,10 +300,6 @@
         right: 130px;
         width: 50px;
         font-size: 16px;
-    }
-
-    .relateds {
-        margin: initial;
     }
 
 }

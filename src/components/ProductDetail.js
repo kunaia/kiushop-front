@@ -73,7 +73,10 @@ const ProductDetail = () => {
       const link = `${server}products/filter?tag_id=${product.tag_fk}`;
       const res = await fetch(link, {
         method: 'GET',
-        headers: {'Content-Type':'application/json'}
+        headers: {
+          'Content-Type':'application/json',
+          Authorization: 'Bearer ' + localStorage.getItem("access_token")
+        }
       });
       const data = await res.json();
       setRelateds(data.products);
@@ -237,7 +240,7 @@ const ProductDetail = () => {
           <h1
             style={{
               fontSize: lang === "ka" ? "38px" : "52px",
-              lineHeight: "30px",
+              lineHeight: "40px",
             }}
           >
             {lang === "ka" ? product.title_ge : product.title_en}
@@ -304,7 +307,8 @@ const ProductDetail = () => {
             {
               relateds?.map((p) => 
                   <Product
-                    isvisible={p.isvisible}
+                    isrelated={true}
+                    isvisible={p.is_visible}
                     img={p.images.filter((i) => i.main)[0].img_url}
                     id={p.id}
                     sale={p.discount}
