@@ -7,7 +7,7 @@ import { UserContext } from "../UserContext";
 import { useParams } from "react-router-dom";
 import server from "./ServerURL.js";
 import { MdRemoveCircle, MdPhoto } from "react-icons/md";
-import { upload } from "@testing-library/user-event/dist/upload";
+import Product from "./Product";
 import AddProduct from "./AddProduct";
 
 const ProductDetail = () => {
@@ -15,11 +15,12 @@ const ProductDetail = () => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState("");
-  const [image, setImage] = useState({});
+  const [main, setMain] = useState({});
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [images, set_images] = useState([]);
   const [editing, setEditing] = useState(false);
+  const [relateds, setRelateds] = useState([]);
 
   const {
     userData,
@@ -30,7 +31,6 @@ const ProductDetail = () => {
     checkUser,
     getBasket,
     addToBasket2,
-    setCartSize,
   } = useContext(UserContext);
 
   const getProduct = async () => {
@@ -63,9 +63,24 @@ const ProductDetail = () => {
 
     const main_img = data.product.images.filter((e) => e.main === true)[0];
     setMainImage(main_img && main_img.img_url);
+    setMain(main_img && main_img);
     setProduct(data.product);
     console.log(data);
   };
+
+  const getRelateds = async () => {
+    if(product.tag_fk) {
+      const link = `${server}products/filter?tag_id=${product.tag_fk}`;
+      const res = await fetch(link, {
+        method: 'GET',
+        headers: {'Content-Type':'application/json'}
+      });
+      const data = await res.json();
+      setRelateds(data.products);
+      console.log("rels");
+      console.log(data);
+    }
+  }
 
   const sendPhoto = async (e) => {
     const formdata = new FormData();
@@ -110,9 +125,10 @@ const ProductDetail = () => {
     console.log(data);
   };
 
-  const setMainPhoto = async (p) => {
+  const setMainPhoto = async (p, e) => {
     const img_id = p.id;
     setMainImage(p.img_url);
+    setMain(p);
     const link = server + "product/" + id + "/main_image/" + img_id;
     const res = await fetch(link, {
       method: "PUT",
@@ -129,7 +145,12 @@ const ProductDetail = () => {
     getBasket();
     window.scrollTo(0, 0);
     getProduct();
+    getRelateds();
   }, []);
+
+  useEffect(() => {
+    getRelateds();
+  }, [product]);
 
   return (
     <div className="product_details">
@@ -159,7 +180,7 @@ const ProductDetail = () => {
       <div className="product_line">
         <div className="line_left">
           {images.map((x) => (
-            <div className="left_img">
+            <div className="left_img" key={x.img_url}>
               {userData.permission === "admin" && logged_in && (
                 <MdRemoveCircle
                   size={20}
@@ -169,15 +190,15 @@ const ProductDetail = () => {
               )}
               {userData.permission === "admin" && logged_in && (
                 <MdPhoto
+                  style={{ color: x.id === main.id ? "green" : "" }}
                   size={20}
                   id="photo_circle"
-                  onClick={() => setMainPhoto(x)}
+                  onClick={(e) => setMainPhoto(x, e)}
                 />
               )}
               <img
-                style={{ height: "100px", width: "100px" }}
                 onClick={() => setMainImage(x.img_url)}
-                class="detail"
+                className="detail-small-img"
                 src={x.img_url}
               />
             </div>
@@ -215,18 +236,15 @@ const ProductDetail = () => {
         <div className="line_right">
           <h1
             style={{
-              fontSize: lang === "ka" ? "42px" : "56px",
-              lineHeight: "40px",
-              marginBottom: "20px",
+              fontSize: lang === "ka" ? "38px" : "52px",
+              lineHeight: "30px",
             }}
           >
             {lang === "ka" ? product.title_ge : product.title_en}
           </h1>
           <p id="prod_detail_price">${product.price?.toFixed(2)}</p>
-          <div className="amount" style={{ marginLeft: "-20px" }}>
-            <label htmlFor="quantity">
-              {lang === "ka" ? "რაოდენობა" : "Quantity"}
-            </label>
+          <div className="amount">
+            <label>{lang === "ka" ? "რაოდენობა: " : "Quantity: "}</label>
             <input
               type="number"
               id="quantity"
@@ -237,7 +255,7 @@ const ProductDetail = () => {
           </div>
           <div className="amount" style={{ marginLeft: "-20px" }}>
             <label htmlFor="currency">
-              {lang === "ka" ? "ვალუტა" : "Curency"}
+              {lang === "ka" ? "ვალუტა: " : "Curency: "}
             </label>
             <select name="" id="currency">
               <option value="USD">USD</option>
@@ -257,15 +275,15 @@ const ProductDetail = () => {
           >
             {lang == "ka" ? "კალათაში დამატება" : "ADD TO CART"}
           </button>
-          <div className="terms_conditions">
+          {/* <div className="terms_conditions">
             <input type="checkbox" />
             <p>
               {lang === "ka"
                 ? "ვეთანხმები წესებს და პირობებს"
                 : "I agree with terms and conditions"}
             </p>
-          </div>
-          <div className="button">
+          </div> */}
+          <div className="button" style={{ marginLeft: "-10PX" }}>
             <div className="front">
               {lang === "ka" ? "ყიდვა ახლა" : "BUY IT NOW"}
             </div>
@@ -282,7 +300,22 @@ const ProductDetail = () => {
       <div className="header2">
         {lang === "ka" ? "მსგავსი პროდუქტი" : "Related Products"}
       </div>
-      <ProductsEn />
+      <div className="relateds">
+            {
+              relateds?.map((p) => 
+                  <Product
+                    isvisible={p.isvisible}
+                    img={p.images.filter((i) => i.main)[0].img_url}
+                    id={p.id}
+                    sale={p.discount}
+                    name={p.title_en}
+                    price={p.price}
+                    self={p}
+                  />
+                
+              )
+            }
+      </div>
       <FooterEn />
     </div>
   );

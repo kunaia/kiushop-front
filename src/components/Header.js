@@ -409,14 +409,14 @@ const Header = () => {
           {logged_in ? (
             <Link className="text-link" to="/">
               <div className="profile">
-                <CgProfile size={35} />
+                <CgProfile size={30} />
                 <p id="login">{name}</p>
               </div>
             </Link>
           ) : (
             <Link className="text-link" to={"/login"}>
               <div className="profile">
-                <CgProfile size={35} />
+                <CgProfile size={30} />
                 <p id="login">{lang === "ka" ? "შესვლა" : "Login"}</p>
               </div>
             </Link>
@@ -426,11 +426,11 @@ const Header = () => {
             to={logged_in ? "/favourites/1" : "/login"}
             id={favs?.length > 0 ? "heart" : ""}
           >
-            <BsHeart size={30} />
+            <BsHeart size={25} />
           </Link>
           <a href="/cart/1" className="text-link cart-icon">
             {cartSize !== 0 && <div className="cart-number">{cartSize}</div>}
-            <BsCart size={30} />
+            <BsCart size={25} />
           </a>
           {logged_in && (
             <Link to="/orders" className="text-link">
@@ -442,7 +442,7 @@ const Header = () => {
           <div className="header__right__resp">
             <Link className="text-link" to={"/"}>
               <div className="profile">
-                <CgProfile size={35} />
+                <CgProfile size={30} />
                 <p id="login">{name}</p>
               </div>
             </Link>

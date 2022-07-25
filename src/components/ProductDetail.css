@@ -6,7 +6,9 @@
     box-sizing: border-box;
 }
 .product_details{
-width: 100vw;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
 }
 
 .line_right > h1{
@@ -16,6 +18,7 @@ width: 100vw;
     width: 100%;
     margin-top: 200px;
     height: 900px;
+    margin-bottom: -100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,18 +32,16 @@ width: 100vw;
 
 #main_img {
     width: 100%;
-    height:700px;
+    aspect-ratio: 3/4;
     object-fit: cover;
     object-position: center;
 }
 
 .mainImage{
-    width: 500px;
-    height:50%;
+    width: 400px;
     margin-right: 20px;
     margin-bottom: 10px;
-    margin-top: -200px;
-    
+    margin-top: -350px;
     display: flex;
     position: relative;
 }
@@ -50,13 +51,14 @@ width: 100vw;
     height: 100%;
     width: 150px;
     flex-direction: column;
-    margin-right: 20px;
+    margin-right: 0px;
     overflow-y: auto;
 }
 
 .line_left > * {
     cursor: pointer;
     object-fit: cover;
+    object-position: center;
 }
 
 .line_left::-webkit-scrollbar-thumb {
@@ -130,7 +132,7 @@ width: 100vw;
 }
 .amount label{
     color: black;
-    font-size: 20px !important;
+    font-size: 18px !important;
 }
 
 .amount{
@@ -140,25 +142,26 @@ width: 100vw;
     margin: 10px 0;
     align-items: center;
 }
-.detail{
-    height: 30%;
+.detail-small-img {
+    width: 100%;
     margin-bottom: 10px;
-    margin-right: 20px;
+    margin-right: 0px;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 1;
 }
 .line_right button{
-width: 80%;
-height: 50px;
-border: none;
-border-radius: 0;
-background-color: black;
-color: white;
-font-size: 20px;
-margin: 15px 0;
-cursor: pointer;
-
+    width: 80%;
+    height: 50px;
+    border: none;
+    border-radius: 0;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    margin: 15px 0;
+    cursor: pointer;
 }
 .front{
-    background-color: #107500;
     width: 260px;
     height: 40px;
     display: flex;
@@ -183,11 +186,10 @@ cursor: pointer;
     margin-right: -10px !important;
     margin-left: 20px;
     margin-bottom: -10px;
-    background-color: #1bc700;
 }
-.terms_conditions{
-display: flex;
-align-items: center;
+.terms_conditions {
+    display: flex;
+    align-items: center;
 }
 .terms_conditions p{
     margin-left: 5px;
@@ -214,19 +216,30 @@ align-items: center;
 
 .left_img {
     position: relative;
+    width: 80px;
+    margin-top: 10px;
+    aspect-ratio: 1;
 }
+
+.relateds {
+    margin: auto;
+    display: flex;
+    gap: 100px;
+    overflow-x: auto;
+}
+
 
 #rm_circle {
     position: absolute;
-    top: 0;
-    right: 45px;
+    top: -5px;
+    right: -5px;
     color: red;
 }
 
 #photo_circle {
     position: absolute;
-    right: 45px;
-    bottom: 15px;
+    right: -5px;
+    bottom: 8px;
 }
 
 .main_upload {
@@ -234,12 +247,32 @@ align-items: center;
     transform: translate(50%, 50%);
 }
 
-@media only screen and (max-width: 1200px) {
+#quantity, #currency {
+    padding: 5px;
+    font-size: 16px;
+    width: 80px;
+    margin-left: 30px;
+}
+
+.amount {
+    margin-left: -20px;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+#add-to-cart {
+    width: 300px;
+    font-size: 16px;
+}
+
+
+@media only screen and (max-width: 1000px) {
     .product_line {
         flex-direction: column;
         height: auto;
         align-items: center;
         justify-content: center;
+        margin-bottom: 0;
     }
 
     .line_left {
@@ -251,22 +284,34 @@ align-items: center;
         overflow: visible;
     }
 
-    .mainImage {
+    #main_img {
+        width: 250px;
+        height: 350px;
     }
 
-    #main_img {
-        width: 300px;
-        height: 400px;
+    .mainImage {
+        margin-top: 0px;
     }
 
     
     .discount_place {
-        right: 180px;
+        right: 130px;
+        width: 50px;
+        font-size: 16px;
+    }
+
+    .relateds {
+        margin: initial;
     }
 
 }
 
 @media only screen and (max-width: 800px) {
+
+    .mainImage {
+        margin-right: 80px;
+        margin-top: -50px;
+    }
 
     #add-to-cart {
         width: 250px;
@@ -275,7 +320,6 @@ align-items: center;
 
     .product_line {
         margin-left: 100px;
-        margin-top: 350px;
     }
 
     .line_right > h1 {
@@ -283,8 +327,8 @@ align-items: center;
     }
 
     #main_img {
-        width: 300px;
-        height: 400px;
+        width: 250px;
+        height: 350px;
     }
 
     .header2 {
@@ -293,6 +337,10 @@ align-items: center;
 
     .main_upload {
         left: -50px;
+    }
+
+    .relateds {
+        margin-bottom: 300px;
     }
 
     .line_right {

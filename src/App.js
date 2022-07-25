@@ -5,13 +5,12 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import HomeEn from "./components/HomeEn.js";
 import ProductDetail from "./components/ProductDetail.js";
 import LoginEn from "./components/LoginEn.js";
 import RegisterEn from "./components/RegisterEn.js";
 import Verify from "./components/Verify.js";
-import SearchPage from "./components/SearchPage.js";
 import server from "./components/ServerURL.js";
 import vector from "./images/vector.png";
 import MessengerCustomerChat from "react-messenger-customer-chat";
@@ -334,7 +333,6 @@ const App = () => {
               path="/register"
               element={<RegisterEn userData={userData} />}
             />
-            <Route path="/search" element={<SearchPage />} />
             <Route path="/cart/:id" element={<Cart />} />
             <Route path="/verify" element={<Verify />} />
             <Route path="/favourites/:id" element={<Favourites />} />

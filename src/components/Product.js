@@ -5,20 +5,11 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import server from "./ServerURL";
 
-const Product = ({
-  isadmin,
-  isvisible,
-  lang,
-  img,
-  id,
-  sale,
-  name,
-  price,
-  self,
-}) => {
+const Product = ({ isvisible, img, id, sale, name, price, self }) => {
   const [vis, set_vis] = useState(isvisible);
-  const { addToBasket, getBasket, setFavs, favs, logged_in } =
+  const { addToBasket, getBasket, setFavs, favs, logged_in, userData, lang } =
     useContext(UserContext);
+  const isadmin = userData.permission === "admin";
 
   const turn_visible_on = () => {
     toggle_visibility();

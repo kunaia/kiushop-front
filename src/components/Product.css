@@ -74,9 +74,9 @@
 .add-cart {
     font-size: 18px;
     display: inline-block;
+    padding: 6px 18px;
     background-color: black;
     color: white;
-    padding: 5px 40px;
     cursor: pointer;
 }
 

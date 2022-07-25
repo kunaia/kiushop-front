@@ -53,8 +53,9 @@ nav {
 }
 
 .lang {
-    padding: 5px 8px;
+    padding: 3px 6px;
     border: 1px solid black;
+    font-size: 13px;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -63,7 +64,7 @@ nav {
 .header__right {
     display: flex;
     align-items: center;
-    height: 100px;
+    height: 80px;
 }
 
 .searchbar__container {
@@ -75,15 +76,16 @@ nav {
 .searchbar {
     align-items: center;
     border: 1px solid gray;
-    padding: 10px 20px;
+    padding: 8px 16px;
     border-radius: 20px;
-    font-size: 20px;
+    font-size: 17px;
     margin-right: 5px;
     outline: none;
 }
 
 .profile {
     text-align: center;
+    font-size: 14px;
 }
 
 .profile:hover>p {
@@ -115,7 +117,7 @@ nav {
 }
 
 .logo {
-    width: 200px;
+    width: 150px;
 }
 
 .header__right__resp {
@@ -124,7 +126,7 @@ nav {
     background-color: #ffffff;
     padding: 50px;
     right: 0;
-    top: 100px;
+    top: 80px;
     z-index: 6;
     animation: dropAnimation 0.3s ease-out;
 }
@@ -158,7 +160,7 @@ nav {
     left: calc(20vw/2);
     position: absolute;
     display: none;
-    top: 100px;
+    top: 80px;
     animation: dropdown 1s;
     overflow-y: hidden;
 }
@@ -468,10 +470,6 @@ nav {
         display: block;
     }
 
-    .searchbar {
-        display: none;
-    }
-
     .header__right__resp {
         flex-direction: column;
         align-items: center;
@@ -490,6 +488,10 @@ nav {
 @media only screen and (max-width: 800px) {
     .logo {
         width: 140px;
+    }
+
+    .searchbar {
+        display: none;
     }
 
     .lang {
