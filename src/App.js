@@ -20,6 +20,7 @@ import { UserContext } from "./UserContext.js";
 import SuccessOrder from "./components/SuccessOrder.js";
 import Orders from "./Orders.js";
 import OrderCart from "./components/OrderCart.js";
+import ResetPass from "./components/ResetPass.js";
 
 const App = () => {
   const [logged_in, set_logged_in] = useState(false);
@@ -345,6 +346,10 @@ const App = () => {
             <Route path="/order_success" element={<SuccessOrder />} />
             <Route path="/orders" exact element={<Orders />} />
             <Route path="/order/:order_id" element={<OrderCart />} />
+            <Route
+              path="/password_reset/:user_id/:password_reset_token"
+              element={<ResetPass />}
+            />
           </Routes>
         </div>
       </UserContext.Provider>

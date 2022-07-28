@@ -71,6 +71,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
 }
 
 .searchbar {
@@ -117,7 +118,8 @@ nav {
 }
 
 .logo {
-    width: 150px;
+    width: 120px;
+    filter: brightness(80%);
 }
 
 .header__right__resp {
@@ -144,9 +146,6 @@ nav {
     display: flex;
 }
 
-.searchbar__container {
-    height: 100%;
-}
 
 .searchModal:hover {
     display: flex;

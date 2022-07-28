@@ -69,21 +69,25 @@ const ProductDetail = () => {
   };
 
   const getRelateds = async () => {
-    if(product.tag_fk) {
+    if (product.tag_fk) {
       const link = `${server}products/filter?tag_id=${product.tag_fk}`;
       const res = await fetch(link, {
-        method: 'GET',
-        headers: {
-          'Content-Type':'application/json',
-          Authorization: 'Bearer ' + localStorage.getItem("access_token")
-        }
+        method: "GET",
+        headers: localStorage.getItem("access_token")
+          ? {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("access_token"),
+            }
+          : {
+              "Content-Type": "application/json",
+            },
       });
       const data = await res.json();
       setRelateds(data.products);
       console.log("rels");
       console.log(data);
     }
-  }
+  };
 
   const sendPhoto = async (e) => {
     const formdata = new FormData();
@@ -135,10 +139,14 @@ const ProductDetail = () => {
     const link = server + "product/" + id + "/main_image/" + img_id;
     const res = await fetch(link, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("access_token"),
-      },
+      headers: localStorage.getItem("access_token")
+        ? {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          }
+        : {
+            "Content-Type": "application/json",
+          },
     });
     const data = await res.json();
     console.log(data);
@@ -304,21 +312,19 @@ const ProductDetail = () => {
         {lang === "ka" ? "მსგავსი პროდუქტი" : "Related Products"}
       </div>
       <div className="relateds">
-            {
-              relateds?.map((p) => 
-                  <Product
-                    isrelated={true}
-                    isvisible={p.is_visible}
-                    img={p.images.filter((i) => i.main)[0].img_url}
-                    id={p.id}
-                    sale={p.discount}
-                    name={p.title_en}
-                    price={p.price}
-                    self={p}
-                  />
-                
-              )
-            }
+        {relateds?.map((p) => (
+          <Product
+            key={p.id}
+            isrelated={true}
+            isvisible={p.is_visible}
+            img={p.images.filter((i) => i.main)[0].img_url}
+            id={p.id}
+            sale={p.discount}
+            name={p.title_en}
+            price={p.price}
+            self={p}
+          />
+        ))}
       </div>
       <FooterEn />
     </div>

@@ -1,6 +1,7 @@
 import carousel1 from "../images/carousel1.png";
 import carousel2 from "../images/carousel2.png";
 import carousel3 from "../images/carousel3.png";
+import logo from "../images/logoBlack.png";
 import "./Carousel.css";
 import { useState, useEffect } from "react";
 
@@ -66,10 +67,12 @@ const Carousel = () => {
   return (
     <div>
       <div className="carousel__container">
-        <h1 id="carousel__logo">KIUSoft</h1>
-        <div className="shopnow">
-          <div className="shopnow__outer">Shop now</div>
-          <div className="shopnow__inner"></div>
+        <div className="carousel_content">
+          <div id="carousel__logo">ceramic ART</div>
+          <div className="shopnow">
+            <div className="shopnow__outer">Shop now</div>
+            <div className="shopnow__inner"></div>
+          </div>
         </div>
         <div className="dots">
           <div

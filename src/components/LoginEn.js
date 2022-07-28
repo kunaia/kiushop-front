@@ -8,6 +8,7 @@ import "./Login.css";
 const LoginEn = ({ loading, login }) => {
   const [log, setLog] = useState("");
   const [password, setPassword] = useState("");
+  const [reset_mail, set_reset_mail] = useState("");
   const [errorFlag, setErrorFlag] = useState(false);
   const { userData, logged_in, toggleLogged, lang } = useContext(UserContext);
   const navigate = useNavigate();
@@ -20,6 +21,42 @@ const LoginEn = ({ loading, login }) => {
     e.preventDefault();
     login(log, password, navigate);
   };
+
+  const onForgot = function (e) {
+    const frm = document.getElementById("login_form");
+    const reset_form = document.querySelector(".reset-form");
+    frm.style.display = "none";
+    e.target.style.display = "none";
+    reset_form.style.display = "inline-block";
+  };
+
+  const onSend = async function (e) {
+    const email_inp = document.querySelector(".inp");
+    const err = document.querySelector(".send_reset_error");
+    const link = server + "reset_password";
+    const res = await fetch(link, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email_inp.value,
+      }),
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      email_inp.disabled = true;
+      e.target.style.display = "none";
+      err.innerText = data.message;
+      err.style.display = "block";
+      err.style.color = "green";
+    } else {
+      err.innerText = data.message;
+      err.style.display = "block";
+    }
+
+    console.log(data);
+  };
+
   return (
     <div className="login">
       <HomeEn />
@@ -28,7 +65,7 @@ const LoginEn = ({ loading, login }) => {
       </Link>
       <div className="login__modal">
         <h1>{lang === "ka" ? "ჩემი ანგარიში" : "My Account"}</h1>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} id="login_form">
           <label>
             {lang === "ka" ? "იუზერნეიმი ან ელ-ფოსტა" : "EMAIL OR USERNAME"}
           </label>
@@ -73,6 +110,22 @@ const LoginEn = ({ loading, login }) => {
             {lang === "ka" ? "შესვლა" : "Login"}
           </button>
         </form>
+        <p id="forgot" onClick={(e) => onForgot(e)}>
+          Forgot password?
+        </p>
+        <div className="reset-form">
+          <label>{lang === "ka" ? "ელ-ფოსტა" : "EMAIL"}</label>
+          <input
+            onChange={(e) => setLog(e.target.value)}
+            type="email"
+            required
+            className="inp"
+          />
+          <p className="error send_reset_error">errirrr</p>
+          <div id="reset_btn" onClick={onSend}>
+            {lang === "ka" ? "გაგზავნა" : "Send"}
+          </div>
+        </div>
       </div>
     </div>
   );
