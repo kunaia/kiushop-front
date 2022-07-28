@@ -339,10 +339,7 @@ const App = () => {
             <Route path="/favourites/:id" element={<Favourites />} />
             <Route path={"/product/:id"} element={<ProductDetail />} />
 
-            <Route
-              path={"/kiushop/verify/:user_id/:token"}
-              element={<Verify />}
-            />
+            <Route path={"/verify/:user_id/:token"} element={<Verify />} />
             <Route path="/order_success" element={<SuccessOrder />} />
             <Route path="/orders" exact element={<Orders />} />
             <Route path="/order/:order_id" element={<OrderCart />} />
